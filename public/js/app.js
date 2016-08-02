@@ -12,7 +12,7 @@ socket.on('message', function (message) {
 
 	console.log('You have a new message: '+ message.text);
 
-	jQuery('.messages').append('<p><strong>' + momentTimestamp.local().format('h:mm a:  ') + '</strong>' + message.text +'</p>')
+	jQuery('.messages').prepend('<p><strong>' + momentTimestamp.local().format('h:mm a:  ') + '</strong>' + message.text +'</p>')
 });
 
 
