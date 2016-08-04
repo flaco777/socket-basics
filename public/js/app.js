@@ -1,5 +1,5 @@
 var name = getQueryVariable('name') || "Anonymous";
-var room = getQueryVariable('room');
+var room = getQueryVariable('room').toLowerCase().trim();
 var socket = io();
 
 jQuery(".room-title").text(room);
