@@ -3,20 +3,40 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Chat App</title>
+		<link rel="stylesheet" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" href="./css/styles.css">
+		<style>
+			.well {
+				margin-top: 50px;
+			}
+		</style>
 	</head>
 	<body>
-		<p><a href="/index.html">Change Alias</a></p>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 well">
+					<a href="/index.html">Change Alias</a>
 		
-		<h1 class="room-title"></h1>
+					<h1 class="room-title text-center"><!-- Room name (use jQuery) --></h1>
 
-		<form id="message-form">
-			<input type="text" name="message"/>
-			<input type="submit"/>
-		</form>
-		<div class="messages">
-			<!-- <font-size="60px"> </font>  -->
-			<!-- Messages end up here! -->
-		</font>
+					
+
+					<form id="message-form">
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon">
+									<i  class="glyphicon glyphicon-comment"></i>
+								</span>
+								<input type="text" name="message" class="form-control"/>	
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="submit" class="btn btn-default btn-block"/>
+						</div>
+					</form>
+				</div>
+					<ul class="messages list-group"><!-- Messages end up here! --></ul>
+			</div>
 		</div>
 		<script src="/js/jquery.js"></script>
 		<script src="/js/socketio.js"></script>
