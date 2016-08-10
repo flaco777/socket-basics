@@ -5,6 +5,8 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var moment = require('moment');
 	var now = moment();
+var sanitizeHtml = require('sanitize-html');
+
 	
 app.use(express.static(__dirname + '/public'));
 
@@ -58,23 +60,36 @@ io.on('connection', function (socket) {
 		});
 	});
 
-	socket.on('message', function (message) {
-		console.log('Message received: '+ message.text);
+	socket.on('message', function(message) {
+		console.log('Message received: ' + message.text);
+		message.text = sanitizeHtml(message.text);
+		// if (message.text !== sanitizedMsg) {
+		// 	socket.emit('message', {
+		// 		name: 'System',
+		// 		text: 'You have been booted for attempted hacking, douche.',
+		// 		timestamp: moment().valueOf()
+		// 	});
+		// 	delete clientInfo[socket.id];
+		// 	return;
+		// }
 		if (message.text === "") {
 			return;
-		} else if (message.text === '@currentUsers'){
+		} else if (message.text === '@currentUsers') {
 			sendCurrentUsers(socket);
 		} else {
-		message.timestamp = moment().valueOf();
-		io.to(clientInfo[socket.id].room).emit('message', message);
-	}
+			message.timestamp = moment().valueOf();
+			io.to(clientInfo[socket.id].room).emit('message', message);
+		}
+		// else if (message.text.substring(0,5) === '@boot'){
+				
+		// 	} 
 	});
 
-	socket.emit('message', {
-		name: 'System',
-		text: 'Welcome to the chat application.',
-		timestamp: moment().valueOf()
-	})
+	// socket.emit('message', {
+	// 	name: 'System',
+	// 	text: 'Welcome to the chat application.',
+	// 	timestamp: moment().valueOf()
+	// })
 });
 
 http.listen(PORT, function () {

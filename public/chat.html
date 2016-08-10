@@ -23,6 +23,7 @@
 		<script src="/js/moment.js"></script>
 		<script src="/js/QueryParams.js"></script>
 		<script src="/js/app.js"></script>
+		<script> function clean(el){ var textfield = document.getElementById(el); var regex = /[^a-z 0-9?!.,]/gi; if(textfield.value.search(regex) > -1) { textfield.value = textfield.value.replace(regex, ""); } } </script> 
 	</body>
 </html>
 

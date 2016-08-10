@@ -17,7 +17,6 @@ socket.on('message', function (message) {
 	var $message = jQuery('.messages');
 
 	console.log('You have a new message: '+ message.text);
-	
 	$message.prepend(message.text + '<br>');
 	$message.prepend('<strong>' + message.name +"@"+ momentTimestamp.local().format('h:mm a:  ') + '</strong>');
 
